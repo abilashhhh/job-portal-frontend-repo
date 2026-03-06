@@ -1,10 +1,11 @@
+import Hero from '@/components/Hero'
 import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const Home = () => {
   return (
     <div>
-      <Button variant={'destructive'} size={"sm"}>Shad CN Button</Button>
+      <Hero/>
     </div>
   )
 }
