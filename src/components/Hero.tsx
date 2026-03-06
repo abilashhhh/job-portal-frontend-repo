@@ -98,7 +98,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-2xl transition-all duration-500 group-hover:blur-3xl group-hover:scale-110"></div>
 
               <Image
-                src="/image-2.jpg"
+                src="/image-7.png"
                 alt="Job search illustration"
                 fill
                 className="object-contain relative z-10 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 drop-shadow-2xl"
