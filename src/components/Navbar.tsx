@@ -12,7 +12,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setisOpen(!isOpen);
   };
-  const isAuth = false;
+  const isAuth = true;
   const logoutHandler = () => {};
 
   return (
