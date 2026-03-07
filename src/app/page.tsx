@@ -1,5 +1,6 @@
 import CareerGuide from "@/components/CareerGuide";
 import Hero from "@/components/Hero";
+import ResumeAnalyzer from "@/components/ResumeAnalyzer";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
@@ -8,6 +9,7 @@ const Home = () => {
     <div>
       <Hero />
       <CareerGuide />
+      <ResumeAnalyzer/>
     </div>
   );
 };
