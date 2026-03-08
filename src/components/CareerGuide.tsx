@@ -12,7 +12,7 @@ import {
   Briefcase,
   TrendingUp,
 } from "lucide-react";
-import { CareerGuideResponse, Utils_Service } from "@/lib/type";
+import { CareerGuideResponse } from "@/lib/type";
 import axios from "axios";
 import {
   Dialog,
@@ -25,6 +25,8 @@ import {
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { Utils_Service } from "@/context/AppContext";
+import toast from "react-hot-toast";
 
 const CareerGuide = () => {
   const [open, setOpen] = useState(false);
@@ -52,7 +54,7 @@ const CareerGuide = () => {
 
   const getCareerGuidance = async () => {
     if (skills.length === 0) {
-      alert("Please add atleast one skill");
+      toast.error("Please add atleast one skill");
     }
     setLoading(true);
     try {
@@ -63,9 +65,9 @@ const CareerGuide = () => {
         },
       );
       setResponse(data);
-      alert("Career guidance genrated");
+      toast.success("Career guidance genrated");
     } catch (error: any) {
-      alert(`Career guidance error: ${error.response.data.message}`);
+      toast.error(`Career guidance error: ${error.response.data.message}`);
     } finally {
       setLoading(false);
     }

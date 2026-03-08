@@ -21,7 +21,9 @@ import {
   Zap,
 } from "lucide-react";
 import axios from "axios";
-import { Utils_Service, ResumeAnalysisResponse } from "@/lib/type";
+import { ResumeAnalysisResponse } from "@/lib/type";
+import { Utils_Service } from "@/context/AppContext";
+import toast from "react-hot-toast";
 // import toast from "react-hot-toast";
 const ResumeAnalyzer = () => {
   const [open, setOpen] = useState(false);
@@ -55,8 +57,7 @@ const ResumeAnalyzer = () => {
   };
   const analyzeResume = async () => {
     if (!file) {
-      // toast.error("Please upload a resume");
-      alert("Please upload a resume");
+      toast.error("Please upload a resume");
       return;
     }
     setLoading(true);
@@ -69,11 +70,10 @@ const ResumeAnalyzer = () => {
         },
       );
       setResponse(data);
-      // toast.success("Resume analyzed successfully!");
+      toast.success("Resume analyzed successfully!");
       alert("Resume analyzed successfully!");
     } catch (error: any) {
-      // toast.error(error.response?.data?.message || "Failed to analyze resume");
-      alert(error.response?.data?.message || "Failed to analyze resume");
+      toast.error(error.response?.data?.message || "Failed to analyze resume");
       console.log(error);
     } finally {
       setLoading(false);
