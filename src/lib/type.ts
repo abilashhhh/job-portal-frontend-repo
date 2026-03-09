@@ -76,6 +76,11 @@ export interface AppContextType {
   logOutUser: () => Promise<void>;
   updateProfilePic: (formData: any) => Promise<void>;
   updateResume: (formData: any) => Promise<void>;
+  updateUser: (
+    name: string,
+    phone_number: number,
+    bio: string,
+  ) => Promise<void>;
 }
 
 export interface AppProviderProps {

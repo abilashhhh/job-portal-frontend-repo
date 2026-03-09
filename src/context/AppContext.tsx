@@ -16,7 +16,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [btnLoading, setBtnLoading] = useState(true);
+  const [btnLoading, setBtnLoading] = useState(false);
 
   const token = Cookies.get("token");
 
@@ -72,6 +72,23 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   }
 
+  async function updateUser(name: string, phone_number: number, bio: string) {
+    try {
+      setBtnLoading(true);
+      const { data } = await axios.put(
+        `${User_Service}/api/users/updateProfile`,
+        { name, phone_number, bio },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      toast.success(data.message);
+      fetchUser();
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function logOutUser() {
     Cookies.set("token", "");
     setUser(null);
@@ -96,6 +113,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         logOutUser,
         updateProfilePic,
         updateResume,
+        updateUser,
       }}
     >
       {children}
