@@ -24,7 +24,7 @@ const Info: React.FC<AccountProps> = ({ user, isYourAccount }) => {
   const [phone_number, setPhoneNumber] = useState("");
   const [bio, setBio] = useState("");
 
-  const { updateProfilePic } = useAppData();
+  const { updateProfilePic, updateResume } = useAppData();
 
   const handleClick = () => {
     inputRef.current?.click();
@@ -48,6 +48,10 @@ const Info: React.FC<AccountProps> = ({ user, isYourAccount }) => {
 
   const updateProfileHandler = () => {};
 
+  const handleResumeClick = () => {
+    resumeRef?.current?.click();
+  };
+
   const changeResume = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -58,6 +62,7 @@ const Info: React.FC<AccountProps> = ({ user, isYourAccount }) => {
 
       const formData = new FormData();
       formData.append("file", file);
+      updateResume(formData);
     }
   };
 
@@ -180,6 +185,25 @@ const Info: React.FC<AccountProps> = ({ user, isYourAccount }) => {
                     View Resume PDF
                   </Link>
                 </div>
+
+                {/* Edit resume */}
+                <Button
+                  variant={"outline"}
+                  size={"sm"}
+                  onClick={handleResumeClick}
+                  className="gap-2"
+                >
+                  Update
+                </Button>
+                <input
+                  type="file"
+                  ref={resumeRef}
+                  className="hidden"
+                  accept="application/pdf"
+                  onChange={changeResume}
+                  name=""
+                  id=""
+                />
               </div>
             </div>
           )}
