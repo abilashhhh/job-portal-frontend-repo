@@ -102,7 +102,7 @@ const LoginPage = () => {
             </div>
 
             <Button disabled={btnLoading} className="w-full">
-              {btnLoading ? "Signing in.. }" : "Sign In"}
+              {btnLoading ? "Signing in.. " : "Sign In"}
               <ArrowRight size={18} />
             </Button>
           </form>

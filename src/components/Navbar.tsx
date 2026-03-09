@@ -96,8 +96,7 @@ const Navbar = () => {
                         </p>
                       </div>
 
-                      <Link href={"/my-profile"}>
-                        {" "}
+                      <Link href={"/account"}>
                         <Button
                           className="w-full justify-start gap-2"
                           variant={"ghost"}
@@ -174,7 +173,7 @@ const Navbar = () => {
 
           {isAuth ? (
             <>
-              <Link href={"/my-profile"} onClick={toggleMenu}>
+              <Link href={"/account"} onClick={toggleMenu}>
                 <Button
                   variant={"ghost"}
                   className="w-full justify-start gap-3 h-11"

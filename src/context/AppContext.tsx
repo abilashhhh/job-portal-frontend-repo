@@ -19,6 +19,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [btnLoading, setBtnLoading] = useState(true);
 
   const token = Cookies.get("token");
+
   async function fetchUser() {
     try {
       const { data } = await axios.get(`${User_Service}/api/users/myProfile`, {
@@ -30,6 +31,24 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     } catch (error) {
       console.log(`Error in fetchUser :, ${error}`);
       setIsAuth(false);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function updateProfilePic(formData: any) {
+    setLoading(true);
+    try {
+      const { data } = await axios.put(
+        `${User_Service}/api/users/updateProfilePic`,
+        formData,
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+
+      toast.success(data.message);
+      fetchUser();
+    } catch (error: any) {
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -57,6 +76,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setLoading,
         setIsAuth,
         logOutUser,
+        updateProfilePic,
       }}
     >
       {children}
