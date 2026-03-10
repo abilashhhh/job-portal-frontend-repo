@@ -96,6 +96,41 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     toast.success("Logged out successfully");
   }
 
+  async function addSkill(
+    skill: string,
+    setSkill: React.Dispatch<React.SetStateAction<string>>,
+  ) {
+    setBtnLoading(true);
+    try {
+      const { data } = await axios.post(
+        `${User_Service}/api/users/skill/add`,
+        { skillName: skill },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      toast.success(data.message);
+      setSkill("");
+      fetchUser();
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    } finally {
+      setBtnLoading(false);
+    }
+  }
+
+  async function deleteSkill(skill: string) {
+    try {
+      const { data } = await axios.put(
+        `${User_Service}/api/users/skill/delete`,
+        { skillName: skill },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      toast.success(data.message);
+      fetchUser();
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
+  }
+
   useEffect(() => {
     fetchUser();
   }, []);
@@ -114,6 +149,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         updateProfilePic,
         updateResume,
         updateUser,
+        addSkill,
+        deleteSkill,
       }}
     >
       {children}

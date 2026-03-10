@@ -81,6 +81,13 @@ export interface AppContextType {
     phone_number: number,
     bio: string,
   ) => Promise<void>;
+  addSkill: (
+    skill: string,
+    setSkill: React.Dispatch<React.SetStateAction<string>>
+  ) => Promise<void>;
+  deleteSkill: (
+    skill: string,
+  ) => Promise<void>;
 }
 
 export interface AppProviderProps {
