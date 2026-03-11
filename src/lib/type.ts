@@ -108,6 +108,8 @@ export interface Job {
   role: string;
   work_location: "On-site" | "Remote" | "Hybrid";
   company_id: number;
+  company_logo: string;
+  company_name :string 
   posted_by_recruiter_id: number;
   created_at: string;
   is_active: boolean;
