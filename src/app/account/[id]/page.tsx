@@ -1,8 +1,8 @@
 "use client";
-import { User_Service } from "@/context/AppContext";
+import { useAppData, User_Service } from "@/context/AppContext";
 import { User } from "@/lib/type";
 import axios from "axios";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Loading from "@/components/ui/Loading";
@@ -13,6 +13,14 @@ const UserAccountPage = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const {isAuth} = useAppData()
+
+    const router = useRouter();
+    useEffect(() => {
+      if (!loading && !isAuth) {
+        router.push("/login");
+      }
+    }, [isAuth, loading, router]);
 
   async function fetchUser() {
     const token = Cookies.get("token");

@@ -6,6 +6,7 @@ import Info from "./components/info";
 import Skills from "./components/skills";
 import Company from "./components/company";
 import { useRouter } from "next/navigation";
+import MyApplications from "./components/applications";
 
 const AccountPage = () => {
   const { isAuth, loading, user } = useAppData();
@@ -24,7 +25,10 @@ const AccountPage = () => {
         <div className="w-[90%] md:w-[60%] m-auto">
           <Info user={user} isYourAccount={true} />
           {user.role === "jobseeker" && (
-            <Skills user={user} isYourAccount={true} />
+            <>
+              <Skills user={user} isYourAccount={true} />
+              <MyApplications   />
+            </>
           )}
           {user.role === "recruiter" && <Company />}
         </div>

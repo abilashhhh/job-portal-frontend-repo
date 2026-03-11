@@ -1,6 +1,7 @@
 "use client";
 import { Job } from "@/lib/type";
 import React, { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { Job_Service, User_Service, useAppData } from "@/context/AppContext";
@@ -115,6 +116,7 @@ const JobsPage = () => {
   const [mounted, setMounted] = useState(false);
   const dark = mounted && resolvedTheme === "dark";
   const { user } = useAppData();
+  const router = useRouter();
   const token = Cookies.get("token");
 
   const [loading, setLoading] = useState(false);
@@ -434,7 +436,7 @@ const JobsPage = () => {
             }}
           >
             {/* Title search */}
-            <div style={{ ...searchDivider, flex: 1 }}>
+            <div style={{ ...searchDivider, flex: 5 }}>
               <svg
                 width="15"
                 height="15"
@@ -795,7 +797,7 @@ const JobsPage = () => {
                 return (
                   <article
                     key={job.job_id}
-                    onClick={() => setActiveCard(isActive ? null : job.job_id)}
+                    onClick={() => router.push(`/jobs/${job.job_id}`)}
                     onMouseEnter={() => setHoverCard(job.job_id)}
                     onMouseLeave={() => setHoverCard(null)}
                     style={{
