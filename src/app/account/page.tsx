@@ -1,16 +1,22 @@
 "use client";
 import { useAppData } from "@/context/AppContext";
-import React from "react";
+import React, { useEffect } from "react";
 import Loading from "@/components/ui/Loading";
 import Info from "./components/info";
 import Skills from "./components/skills";
 import Company from "./components/company";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const AccountPage = () => {
   const { isAuth, loading, user } = useAppData();
 
-  if (!isAuth) return redirect("/login");
+  const router = useRouter();
+  useEffect(() => {
+    if (!loading && !isAuth) {
+      router.push("/login");
+    }
+  }, [isAuth, loading, router]);
+
   if (loading) return <Loading />;
   return (
     <>
