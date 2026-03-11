@@ -4,6 +4,7 @@ import React from "react";
 import Loading from "@/components/ui/Loading";
 import Info from "./components/info";
 import Skills from "./components/skills";
+import Company from "./components/company";
 
 const AccountPage = () => {
   const { isAuth, loading, user } = useAppData();
@@ -15,6 +16,9 @@ const AccountPage = () => {
           <Info user={user} isYourAccount={true} />
           {user.role === "jobseeker" && (
             <Skills user={user} isYourAccount={true} />
+          )}
+          {user.role === "recruiter" && (
+            <Company />
           )}
         </div>
       )}
