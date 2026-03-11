@@ -122,7 +122,7 @@ export interface Company {
   logo_public_id: string;
   recruiter_id: number;
   created_at: string;
-  job?: Job[];
+  jobs?: Job[];
 }
 
 type ApplicationStatus = "Submitted" | "Rejeted" | "Hired";

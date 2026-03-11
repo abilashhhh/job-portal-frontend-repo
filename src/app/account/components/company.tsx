@@ -13,10 +13,10 @@ import {
   FileText,
   Globe,
   Image,
-  Link,
   Plus,
   Trash2,
 } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Company as CompanyType } from "@/lib/type";
 import {
@@ -53,6 +53,7 @@ const Company = () => {
   };
 
   const token = Cookies.get("token");
+  const [companyLoading, setCompanyLoading] = useState(true);
 
   async function fetchCompanies() {
     try {
@@ -66,6 +67,8 @@ const Company = () => {
       //   setCompanies(data.companies);
     } catch (error: any) {
       console.log(error);
+    }finally{
+      setCompanyLoading(false)
     }
   }
 
@@ -146,7 +149,8 @@ const Company = () => {
             )}
           </div>
         </div>
-        <div className="p-6">
+
+        {companyLoading ?<Loading/> : <div className="p-6">
           {companies.length > 0 ? (
             <div className="grid gap-4">
               {companies.map((c) => (
@@ -197,7 +201,9 @@ const Company = () => {
                       size={"icon"}
                       className="h-9 w-9"
                       onClick={() => {
-                        const confirmDelete = window.confirm("Are you sure you want to delete this company? This action cannot be undone.");
+                        const confirmDelete = window.confirm(
+                          "Are you sure you want to delete this company? This action cannot be undone.",
+                        );
                         if (confirmDelete) {
                           deleteCompany(c.company_id);
                         }
@@ -226,7 +232,8 @@ const Company = () => {
               </div>
             </>
           )}
-        </div>
+        </div>}
+
       </Card>
 
       {/* Add company dialog box */}
