@@ -219,7 +219,7 @@ const LoginPage = () => {
                   backgroundClip: "text",
                 }}
               >
-                Hire
+                Career
               </span>
               <span
                 style={{
@@ -233,7 +233,7 @@ const LoginPage = () => {
                   backgroundClip: "text",
                 }}
               >
-                Heaven
+                Stack
               </span>
               <span
                 style={{

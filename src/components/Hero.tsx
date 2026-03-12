@@ -343,7 +343,7 @@ const Hero = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Hire
+                  Career
                   <span
                     style={{
                       background: "linear-gradient(135deg, #ef4444, #dc2626)",
@@ -352,7 +352,7 @@ const Hero = () => {
                       backgroundClip: "text",
                     }}
                   >
-                    Heaven
+                    Stack
                   </span>
                 </span>
               </h1>

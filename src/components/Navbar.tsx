@@ -290,7 +290,7 @@ const Navbar = () => {
                   lineHeight: 1,
                 }}
               >
-                Hire
+                Career
               </span>
               <span
                 style={{
@@ -305,7 +305,7 @@ const Navbar = () => {
                   lineHeight: 1,
                 }}
               >
-                Heaven
+                Stack
               </span>
               {/* Live dot */}
               <span

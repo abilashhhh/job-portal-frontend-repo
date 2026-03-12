@@ -600,7 +600,7 @@ const About = () => {
                 animation: "fadeUp 0.5s ease 0.2s both",
               }}
             >
-              HireHeaven was founded on a simple belief — that finding
+              CareerStack was founded on a simple belief — that finding
               meaningful work should be effortless, fair, and human.
             </p>
           </div>
@@ -697,7 +697,7 @@ const About = () => {
               />
               <img
                 src="/img1.png"
-                alt="About HireHeaven"
+                alt="About CareerStack"
                 style={{
                   width: "100%",
                   borderRadius: 20,
@@ -817,10 +817,10 @@ const About = () => {
                   fontWeight: 300,
                 }}
               >
-                At HireHeaven, we're dedicated to revolutionizing the job search
-                experience. Our mission is to create meaningful connections
-                between talented individuals and forward-thinking companies,
-                fostering growth and success for both.
+                At CareerStack, we're dedicated to revolutionizing the job
+                search experience. Our mission is to create meaningful
+                connections between talented individuals and forward-thinking
+                companies, fostering growth and success for both.
               </p>
               <p
                 style={{
@@ -1142,7 +1142,7 @@ const About = () => {
                 animation: "fadeUp 0.5s ease 0.2s both",
               }}
             >
-              Join thousands of successful job seekers on HireHeaven. Your next
+              Join thousands of successful job seekers on CareerStack. Your next
               great role is waiting.
             </p>
 
@@ -1269,7 +1269,7 @@ const About = () => {
                 <strong style={{ color: "rgba(240,237,232,0.7)" }}>
                   50,000+
                 </strong>{" "}
-                job seekers already on HireHeaven
+                job seekers already on CareerStack
               </span>
             </div>
           </div>

@@ -259,7 +259,7 @@ const RegisterPage = () => {
                   animation: "pulse 2s infinite",
                 }}
               />
-              HireHeaven
+              CareerStack
             </div>
             <h1
               style={{
