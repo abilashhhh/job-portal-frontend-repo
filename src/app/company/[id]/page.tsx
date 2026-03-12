@@ -953,12 +953,17 @@ const CompanyPage = () => {
     router.push(`/jobs/${job.job_id}/applications`);
   };
   const token = Cookies.get("token");
-  const { user } = useAppData();
+  const { user, loading, isAuth } = useAppData();
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const dark = mounted && resolvedTheme === "dark";
   const t = buildTokens(dark);
 
+  useEffect(() => {
+    if (!loading && !isAuth) {
+      router.push("/login");
+    }
+  }, [isAuth, loading, router]);
   const [pageLoading, setPageLoading] = useState(false);
   const [btnLoading, setBtnLoading] = useState(false);
   const [company, setCompany] = useState<Company | null>(null);
@@ -1898,7 +1903,8 @@ const CompanyPage = () => {
             margin: 0,
           }}
         >
-          Are you sure you want to delete this job posting? This action cannot be undone.
+          Are you sure you want to delete this job posting? This action cannot
+          be undone.
         </p>
       </Modal>
     </>

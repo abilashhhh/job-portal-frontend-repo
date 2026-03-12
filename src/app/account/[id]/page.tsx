@@ -13,14 +13,14 @@ const UserAccountPage = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const {isAuth} = useAppData()
+  const { isAuth } = useAppData();
 
-    const router = useRouter();
-    useEffect(() => {
-      if (!loading && !isAuth) {
-        router.push("/login");
-      }
-    }, [isAuth, loading, router]);
+  const router = useRouter();
+  useEffect(() => {
+    if (!loading && !isAuth) {
+      router.push("/login");
+    }
+  }, [isAuth, loading, router]);
 
   async function fetchUser() {
     const token = Cookies.get("token");
