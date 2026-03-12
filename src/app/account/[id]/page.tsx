@@ -46,11 +46,11 @@ const UserAccountPage = () => {
   return (
     <>
       {user && (
-        <div className="w-[90%] md:w-[60%] m-auto">
+        <div className="w-[90%] md:w-[60%] m-auto flex flex-col gap-10 py-6">
           <Info user={user} isYourAccount={false} />
           {user.role === "jobseeker" && (
             <Skills user={user} isYourAccount={false} />
-          )}{" "}
+          )}
         </div>
       )}
     </>

@@ -156,13 +156,18 @@ const JobsIndividualPage = () => {
   const params = useParams();
   const router = useRouter();
   const id = params?.id;
-  const { user } = useAppData();
+  const { user, isAuth, loading } = useAppData();
   const token = Cookies.get("token");
 
+    useEffect(() => {
+      if (!loading && !isAuth) router.push("/login");
+    }, [isAuth, loading, router]);
+
   const [job, setJob] = useState<Job | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading2, setLoading] = useState(true);
   const [applying, setApplying] = useState(false);
   const [applied, setApplied] = useState(false);
+  const [applicationStatus, setApplicationStatus] = useState<string | null>(null);
   const [hoverBack, setHoverBack] = useState(false);
   const [hoverApply, setHoverApply] = useState(false);
 
@@ -199,8 +204,11 @@ const JobsIndividualPage = () => {
         { headers: { Authorization: `Bearer ${token}` } },
       );
       if (Array.isArray(data)) {
-        const ids = data.map((app: any) => app.job_id);
-        if (ids.includes(Number(id))) setApplied(true);
+        const app = data.find((a: any) => Number(a.job_id) === Number(id));
+        if (app) {
+          setApplied(true);
+          setApplicationStatus(app.status);
+        }
       }
     } catch {}
   };
@@ -251,7 +259,7 @@ const JobsIndividualPage = () => {
     divider: dark ? "#222220" : "#f0ece5",
   };
 
-  if (!mounted || loading) {
+  if (!mounted || loading2) {
     return (
       <>
         <style>{`
@@ -937,8 +945,58 @@ const JobsIndividualPage = () => {
                 )}
               </div>
 
+              {applicationStatus && (
+                <div
+                  style={{
+                    background:
+                      applicationStatus === "Hired"
+                        ? "#ecfdf5"
+                        : applicationStatus === "Rejected"
+                          ? "#fef2f2"
+                          : "#fffbeb",
+                    border:
+                      applicationStatus === "Hired"
+                        ? "1px solid #bbf7d0"
+                        : applicationStatus === "Rejected"
+                          ? "1px solid #fecaca"
+                          : "1px solid #fde68a",
+                    color:
+                      applicationStatus === "Hired"
+                        ? "#166534"
+                        : applicationStatus === "Rejected"
+                          ? "#991b1b"
+                          : "#92400e",
+                    borderRadius: 12,
+                    padding: "14px 16px",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    textAlign: "center",
+                  }}
+                >
+                  Application Status: {applicationStatus}
+                </div>
+              )}
+
+              {applicationStatus && (
+                <p
+                  style={{
+                    fontSize: 12,
+                    color: T.muted,
+                    textAlign: "center",
+                    margin: "-6px 0 4px",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {applicationStatus === "Hired"
+                    ? "Congratulations! Your application has been successfully reviewed and the company has selected you for this position. The hiring team will contact you soon with the next steps and further details regarding the onboarding or interview process. Please keep an eye on your email or phone for updates."
+                    : applicationStatus === "Rejected"
+                      ? "Thank you for taking the time to apply for this position. After careful consideration, the company has decided to move forward with other candidates whose profiles more closely match the current requirements. We encourage you to explore other opportunities and apply again in the future."
+                      : "Your application has been successfully submitted and is currently under review by the hiring team. They will evaluate your profile and qualifications, and you will be notified if your application progresses to the next stage of the hiring process."}
+                </p>
+              )}
+
               {/* Apply button */}
-              {user?.role === "jobseeker" && (
+              {user?.role === "jobseeker" && !applicationStatus && (
                 <button
                   onClick={applyHandler}
                   disabled={applying || applied}

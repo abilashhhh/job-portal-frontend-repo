@@ -1,279 +1,10 @@
-// "use client";
-
-// import { useParams } from "next/navigation";
-// import Cookies from "js-cookie";
-// import axios from "axios";
-// import React, { useEffect, useState } from "react";
-// import { Job_Service } from "@/context/AppContext";
-// import Loading from "@/components/ui/Loading";
-// import toast from "react-hot-toast";
-// import { Mail, Phone, Calendar, CheckCircle2, XCircle } from "lucide-react";
-
-// type Application = {
-//   application_id: number;
-//   job_id: number;
-//   user_id: number;
-//   name: string;
-//   email: string;
-//   phone?: string;
-//   resume?: string;
-//   status: "Submitted" | "Rejected" | "Hired";
-//   created_at: string;
-// };
-
-// const ApplicationsPage = () => {
-//   const params = useParams();
-//   const id = params?.id;
-
-//   const token = Cookies.get("token");
-
-//   const [applications, setApplications] = useState<Application[]>([]);
-//   const [loading, setLoading] = useState(true);
-//   const [btnLoading, setBtnLoading] = useState<number | null>(null);
-
-//   const fetchApplications = async () => {
-//     try {
-//       setLoading(true);
-
-//       const { data } = await axios.get(
-//         `${Job_Service}/api/job/getAllApplications/${id}`,
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         },
-//       );
-
-//       setApplications(data);
-//     } catch (error: any) {
-//       toast.error(
-//         error?.response?.data?.message || "Failed to load applications",
-//       );
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const updateApplicationStatus = async (
-//     applicationId: number,
-//     status: "Rejected" | "Hired",
-//   ) => {
-//     try {
-//       setBtnLoading(applicationId);
-
-//       await axios.put(
-//         `${Job_Service}/api/job/updateApplication/${applicationId}`,
-//         { status },
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//             "Content-Type": "application/json",
-//           },
-//         },
-//       );
-
-//       toast.success(`Application ${status}`);
-
-//       setApplications((prev) =>
-//         prev.map((a) =>
-//           a.application_id === applicationId ? { ...a, status } : a,
-//         ),
-//       );
-//     } catch (error: any) {
-//       toast.error(error?.response?.data?.message || "Failed to update");
-//     } finally {
-//       setBtnLoading(null);
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (id) fetchApplications();
-//   }, [id]);
-
-//   if (loading) return <Loading />;
-
-//   return (
-//     <div
-//       style={{
-//         maxWidth: 1000,
-//         margin: "0 auto",
-//         padding: "40px 20px",
-//       }}
-//     >
-//       <h1
-//         style={{
-//           fontSize: 28,
-//           fontWeight: 700,
-//           marginBottom: 30,
-//         }}
-//       >
-//         Job Applications
-//       </h1>
-
-//       {applications.length === 0 ? (
-//         <div
-//           style={{
-//             padding: 40,
-//             textAlign: "center",
-//             border: "1px solid #eee",
-//             borderRadius: 10,
-//           }}
-//         >
-//           No applications received yet.
-//         </div>
-//       ) : (
-//         <div
-//           style={{
-//             display: "grid",
-//             gap: 16,
-//           }}
-//         >
-//           {applications.map((app) => (
-//             <div
-//               key={app.application_id}
-//               style={{
-//                 padding: 20,
-//                 border: "1px solid #e5e5e5",
-//                 borderRadius: 12,
-//                 background: "#fff",
-//                 display: "flex",
-//                 flexDirection: "column",
-//                 gap: 10,
-//               }}
-//             >
-//               <div
-//                 style={{
-//                   display: "flex",
-//                   justifyContent: "space-between",
-//                   alignItems: "center",
-//                 }}
-//               >
-//                 <h3 style={{ margin: 0 }}>{app.name}</h3>
-
-//                 <span
-//                   style={{
-//                     fontSize: 12,
-//                     padding: "4px 10px",
-//                     borderRadius: 20,
-//                     background:
-//                       app.status === "Hired"
-//                         ? "#e6f9f0"
-//                         : app.status === "Rejected"
-//                         ? "#ffecec"
-//                         : "#f3f4f6",
-//                     color:
-//                       app.status === "Hired"
-//                         ? "#059669"
-//                         : app.status === "Rejected"
-//                         ? "#dc2626"
-//                         : "#555",
-//                   }}
-//                 >
-//                   {app.status}
-//                 </span>
-//               </div>
-
-//               <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
-//                 <span style={{ display: "flex", gap: 6, alignItems: "center" }}>
-//                   <Mail size={14} /> {app.email}
-//                 </span>
-
-//                 {app.phone && (
-//                   <span
-//                     style={{ display: "flex", gap: 6, alignItems: "center" }}
-//                   >
-//                     <Phone size={14} /> {app.phone}
-//                   </span>
-//                 )}
-
-//                 <span style={{ display: "flex", gap: 6, alignItems: "center" }}>
-//                   <Calendar size={14} />
-//                   {new Date(app.created_at).toLocaleDateString()}
-//                 </span>
-//               </div>
-
-//               {app.resume && (
-//                 <div>
-//                   <a
-//                     href={app.resume}
-//                     target="_blank"
-//                     rel="noreferrer"
-//                     style={{
-//                       color: "#d4a017",
-//                       fontWeight: 600,
-//                     }}
-//                   >
-//                     View Resume
-//                   </a>
-//                 </div>
-//               )}
-
-//               {app.status === "Submitted" && (
-//                 <div
-//                   style={{
-//                     display: "flex",
-//                     gap: 10,
-//                     marginTop: 10,
-//                   }}
-//                 >
-//                   <button
-//                     disabled={btnLoading === app.application_id}
-//                     onClick={() =>
-//                       updateApplicationStatus(app.application_id, "Hired")
-//                     }
-//                     style={{
-//                       display: "flex",
-//                       alignItems: "center",
-//                       gap: 6,
-//                       padding: "6px 12px",
-//                       borderRadius: 8,
-//                       border: "none",
-//                       cursor: "pointer",
-//                       background: "#059669",
-//                       color: "white",
-//                     }}
-//                   >
-//                     <CheckCircle2 size={14} /> Hire
-//                   </button>
-
-//                   <button
-//                     disabled={btnLoading === app.application_id}
-//                     onClick={() =>
-//                       updateApplicationStatus(app.application_id, "Rejected")
-//                     }
-//                     style={{
-//                       display: "flex",
-//                       alignItems: "center",
-//                       gap: 6,
-//                       padding: "6px 12px",
-//                       borderRadius: 8,
-//                       border: "none",
-//                       cursor: "pointer",
-//                       background: "#dc2626",
-//                       color: "white",
-//                     }}
-//                   >
-//                     <XCircle size={14} /> Reject
-//                   </button>
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ApplicationsPage;
-
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Job_Service } from "@/context/AppContext";
+import { Job_Service, useAppData } from "@/context/AppContext";
 import Loading from "@/components/ui/Loading";
 import toast from "react-hot-toast";
 import { useTheme } from "next-themes";
@@ -387,7 +118,15 @@ const statusConfig = (
 /* ─────────────────────────────────────────────
    AVATAR INITIALS
 ───────────────────────────────────────────── */
-const Avatar = ({ name, img, t }: { name: string; img?: string | null; t: T }) => {
+const Avatar = ({
+  name,
+  img,
+  t,
+}: {
+  name: string;
+  img?: string | null;
+  t: T;
+}) => {
   const safeName = (name || "").trim();
 
   return (
@@ -902,6 +641,15 @@ const ApplicationsPage = () => {
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
   const [btnLoading, setBtnLoading] = useState<number | null>(null);
+
+  const { isAuth } = useAppData();
+
+  const router = useRouter();
+  useEffect(() => {
+    if (!loading && !isAuth) {
+      router.push("/login");
+    }
+  }, [isAuth, loading, router]);
 
   useEffect(() => {
     setMounted(true);
