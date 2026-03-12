@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useAppData } from "@/context/AppContext";
+import Cookies from "js-cookie";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    ModeToggle — inline version (no shadcn dep)
@@ -203,6 +204,7 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     logOutUser();
+    Cookies.remove("token")
     setPopoverOpen(false);
     setMobileOpen(false);
   };

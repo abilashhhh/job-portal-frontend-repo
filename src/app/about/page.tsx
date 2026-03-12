@@ -443,26 +443,26 @@ const About = () => {
 
   const team = [
     {
-      initials: "AR",
-      name: "Arjun Reddy",
-      role: "Co-founder & CEO",
+      initials: "AN",
+      name: "Abilash Narayanan",
+      role: "Founder & CEO",
       accent: "#d4a017",
     },
     {
-      initials: "PS",
-      name: "Priya Sharma",
+      initials: "SVK",
+      name: "Sajith VK",
       role: "Head of Product",
       accent: "#8b5cf6",
     },
     {
-      initials: "KM",
-      name: "Karan Mehta",
+      initials: "TJ",
+      name: "Thomas Jithin",
       role: "Lead Engineer",
       accent: "#10b981",
     },
     {
-      initials: "NP",
-      name: "Nisha Patel",
+      initials: "AS",
+      name: "Arun S",
       role: "Head of Design",
       accent: "#3b82f6",
     },
@@ -1260,7 +1260,7 @@ const About = () => {
                       fontWeight: 700,
                     }}
                   >
-                    {["A", "P", "K", "N"][i]}
+                    {["A", "S", "T", "A"][i]}
                   </div>
                 ))}
               </div>
