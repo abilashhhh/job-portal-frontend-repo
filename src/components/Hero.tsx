@@ -627,11 +627,14 @@ const Hero = () => {
               }}
             >
               <Image
-                src="/steve-jobs.webp"
+                src="/career.png"
                 alt="Job search illustration"
                 fill
-                style={{ objectFit: "contain" }}
-                priority
+                style={{
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+                 priority
               />
             </div>
 
