@@ -156,6 +156,7 @@ const JobsIndividualPage = () => {
   const params = useParams();
   const router = useRouter();
   const id = params?.id;
+  const { user } = useAppData();
   const token = Cookies.get("token");
 
   const [job, setJob] = useState<Job | null>(null);
@@ -937,73 +938,75 @@ const JobsIndividualPage = () => {
               </div>
 
               {/* Apply button */}
-              <button
-                onClick={applyHandler}
-                disabled={applying || applied}
-                onMouseEnter={() => setHoverApply(true)}
-                onMouseLeave={() => setHoverApply(false)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  width: "100%",
-                  height: 50,
-                  background: applyBg,
-                  color: applyColor,
-                  border: "none",
-                  borderRadius: 12,
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 700,
-                  cursor: applying || applied ? "not-allowed" : "pointer",
-                  transition: "all 0.2s",
-                  letterSpacing: "0.03em",
-                  opacity: applying ? 0.7 : 1,
-                  transform:
-                    hoverApply && !applied ? "translateY(-2px)" : "none",
-                  boxShadow:
-                    hoverApply && !applied
-                      ? "0 8px 24px rgba(212,160,23,0.3)"
-                      : "none",
-                }}
-              >
-                {applied ? (
-                  <>
-                    <svg
-                      width="15"
-                      height="15"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      viewBox="0 0 24 24"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Application Submitted
-                  </>
-                ) : applying ? (
-                  "Submitting…"
-                ) : (
-                  <>
-                    Apply Now
-                    <svg
-                      width="15"
-                      height="15"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      viewBox="0 0 24 24"
-                      style={{
-                        transition: "transform 0.2s",
-                        transform: hoverApply ? "translateX(3px)" : "none",
-                      }}
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </>
-                )}
-              </button>
+              {user?.role === "jobseeker" && (
+                <button
+                  onClick={applyHandler}
+                  disabled={applying || applied}
+                  onMouseEnter={() => setHoverApply(true)}
+                  onMouseLeave={() => setHoverApply(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                    width: "100%",
+                    height: 50,
+                    background: applyBg,
+                    color: applyColor,
+                    border: "none",
+                    borderRadius: 12,
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 14,
+                    fontWeight: 700,
+                    cursor: applying || applied ? "not-allowed" : "pointer",
+                    transition: "all 0.2s",
+                    letterSpacing: "0.03em",
+                    opacity: applying ? 0.7 : 1,
+                    transform:
+                      hoverApply && !applied ? "translateY(-2px)" : "none",
+                    boxShadow:
+                      hoverApply && !applied
+                        ? "0 8px 24px rgba(212,160,23,0.3)"
+                        : "none",
+                  }}
+                >
+                  {applied ? (
+                    <>
+                      <svg
+                        width="15"
+                        height="15"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      Application Submitted
+                    </>
+                  ) : applying ? (
+                    "Submitting…"
+                  ) : (
+                    <>
+                      Apply Now
+                      <svg
+                        width="15"
+                        height="15"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        viewBox="0 0 24 24"
+                        style={{
+                          transition: "transform 0.2s",
+                          transform: hoverApply ? "translateX(3px)" : "none",
+                        }}
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </>
+                  )}
+                </button>
+              )}
 
               {!token && (
                 <p

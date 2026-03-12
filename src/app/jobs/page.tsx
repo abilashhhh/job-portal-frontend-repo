@@ -1102,72 +1102,74 @@ const JobsPage = () => {
                         </div>
                       </div>
 
-                      <button
-                        onClick={(e) => applyHandler(e, job.job_id)}
-                        disabled={isApplying || isApplied}
-                        onMouseEnter={() => setHoverApply(job.job_id)}
-                        onMouseLeave={() => setHoverApply(null)}
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: 7,
-                          background: applyBg,
-                          color: applyColor,
-                          border: "none",
-                          borderRadius: 10,
-                          padding: "9px 18px",
-                          fontFamily: "'DM Sans', sans-serif",
-                          fontSize: 13,
-                          fontWeight: 600,
-                          cursor:
-                            isApplying || isApplied ? "not-allowed" : "pointer",
-                          transition: "all 0.2s",
-                          letterSpacing: "0.02em",
-                          opacity: isApplying ? 0.7 : 1,
-                          transform:
-                            isApplyHover && !isApplied
-                              ? "translateY(-1px)"
-                              : "none",
-                        }}
-                      >
-                        {isApplied ? (
-                          <>
-                            <svg
-                              width="13"
-                              height="13"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2.5"
-                              viewBox="0 0 24 24"
-                            >
-                              <polyline points="20 6 9 17 4 12" />
-                            </svg>
-                            Applied
-                          </>
-                        ) : isApplying ? (
-                          "Applying…"
-                        ) : (
-                          <>
-                            Apply now
-                            <svg
-                              width="14"
-                              height="14"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2.5"
-                              viewBox="0 0 24 24"
-                              style={{
-                                transition: "transform 0.2s",
-                                transform: isApplyHover
-                                  ? "translateX(3px)"
-                                  : "none",
-                              }}
-                            >
-                              <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                          </>
-                        )}
-                      </button>
+                      {user?.role === "jobseeker" && (
+                        <button
+                          onClick={(e) => applyHandler(e, job.job_id)}
+                          disabled={isApplying || isApplied}
+                          onMouseEnter={() => setHoverApply(job.job_id)}
+                          onMouseLeave={() => setHoverApply(null)}
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: 7,
+                            background: applyBg,
+                            color: applyColor,
+                            border: "none",
+                            borderRadius: 10,
+                            padding: "9px 18px",
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: 13,
+                            fontWeight: 600,
+                            cursor:
+                              isApplying || isApplied ? "not-allowed" : "pointer",
+                            transition: "all 0.2s",
+                            letterSpacing: "0.02em",
+                            opacity: isApplying ? 0.7 : 1,
+                            transform:
+                              isApplyHover && !isApplied
+                                ? "translateY(-1px)"
+                                : "none",
+                          }}
+                        >
+                          {isApplied ? (
+                            <>
+                              <svg
+                                width="13"
+                                height="13"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                viewBox="0 0 24 24"
+                              >
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                              Applied
+                            </>
+                          ) : isApplying ? (
+                            "Applying…"
+                          ) : (
+                            <>
+                              Apply now
+                              <svg
+                                width="14"
+                                height="14"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                viewBox="0 0 24 24"
+                                style={{
+                                  transition: "transform 0.2s",
+                                  transform: isApplyHover
+                                    ? "translateX(3px)"
+                                    : "none",
+                                }}
+                              >
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                              </svg>
+                            </>
+                          )}
+                        </button>
+                      )}
                     </div>
                   </article>
                 );
