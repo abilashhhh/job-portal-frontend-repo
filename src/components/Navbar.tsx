@@ -15,6 +15,7 @@ import {
 import { useTheme } from "next-themes";
 import { useAppData } from "@/context/AppContext";
 import Cookies from "js-cookie";
+import CareerStackLogo from "./common/CareerStackLogo";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    ModeToggle — inline version (no shadcn dep)
@@ -274,56 +275,9 @@ const Navbar = () => {
             gap: 16,
           }}
         >
-          {/* Logo */}
-          <Link href="/" style={{ textDecoration: "none", flexShrink: 0 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <span
-                style={{
-                  fontFamily: "'DM Serif Display', serif",
-                  fontSize: 22,
-                  fontWeight: 400,
-                  letterSpacing: "-0.02em",
-                  backgroundImage: dark
-                    ? "linear-gradient(135deg, #f0ede8 30%, #d4a017 100%)"
-                    : "linear-gradient(135deg, #1a1a1a 30%, #d4a017 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  lineHeight: 1,
-                }}
-              >
-                Career
-              </span>
-              <span
-                style={{
-                  fontFamily: "'DM Serif Display', serif",
-                  fontSize: 22,
-                  fontWeight: 400,
-                  letterSpacing: "-0.02em",
-                  backgroundImage: "linear-gradient(135deg, #ef4444, #dc2626)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  lineHeight: 1,
-                }}
-              >
-                Stack
-              </span>
-              {/* Live dot */}
-              <span
-                style={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: "50%",
-                  background: T.gold,
-                  animation: "pulse 2.5s infinite",
-                  marginLeft: 3,
-                  marginBottom: 10,
-                  flexShrink: 0,
-                }}
-              />
-            </div>
-          </Link>
+         
+
+          <CareerStackLogo/>
 
           {/* Desktop nav links */}
           <div
