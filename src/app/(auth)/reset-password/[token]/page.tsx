@@ -24,7 +24,6 @@ const ResetPage = () => {
 
   if (isAuth) return redirect("/");
 
-  /* ── Password strength ── */
   const getStrength = (p: string) => {
     if (!p) return 0;
     let score = 0;
@@ -69,7 +68,6 @@ const ResetPage = () => {
     }
   };
 
-  /* ── Confirm field border/ring classes based on match state ── */
   const confirmBorderClass = passwordsMismatch
     ? "border-red-400 dark:border-red-500 focus:ring-red-400"
     : passwordsMatch
@@ -78,17 +76,14 @@ const ResetPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-5 py-10 bg-[#F7F4EF] dark:bg-[#0d0d0c] font-sans relative overflow-hidden">
-      {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[60vw] h-[60vw] rounded-full bg-[radial-gradient(circle,rgba(212,160,23,0.1)_0%,transparent_65%)] blur-[50px]" />
         <div className="absolute -bottom-[15%] -left-[10%] w-[55vw] h-[55vw] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.05)_0%,transparent_65%)] blur-[60px]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.038)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.038)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black_20%,transparent_100%)]" />
       </div>
 
-      {/* Card wrapper */}
-      <div className="w-full max-w-[420px] relative z-10 animate-fade-up">
+      <div className="w-full max-w-105 relative z-10 animate-fade-up">
         {done ? (
-          /* ── Success state ── */
           <>
             <div className="flex flex-col items-center text-center mb-9">
               <div className="w-14 h-14 rounded-full bg-[rgba(22,163,74,0.08)] dark:bg-[rgba(22,163,74,0.12)] border border-[rgba(22,163,74,0.3)] flex items-center justify-center mb-5">
@@ -144,15 +139,12 @@ const ResetPage = () => {
             </div>
           </>
         ) : (
-          /* ── Form state ── */
           <>
             <div className="flex flex-col items-center text-center mb-9">
-              {/* Icon circle */}
               <div className="w-14 h-14 rounded-full bg-[rgba(212,160,23,0.08)] dark:bg-[rgba(212,160,23,0.1)] border border-[rgba(212,160,23,0.25)] flex items-center justify-center mb-5">
                 <Lock size={22} className="text-[#d4a017]" />
               </div>
 
-              {/* Badge */}
               <span className="inline-flex items-center gap-1.5 bg-[rgba(212,160,23,0.08)] dark:bg-[rgba(212,160,23,0.1)] border border-[rgba(212,160,23,0.22)] rounded-full px-3 py-1 text-[10.5px] font-bold text-[#d4a017] tracking-[0.1em] uppercase mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#d4a017] animate-pulse" />
                 Password Reset
@@ -166,7 +158,6 @@ const ResetPage = () => {
               </p>
             </div>
 
-            {/* Form card */}
             <div className="bg-white dark:bg-[#1a1a18] border border-[#e8e4dc] dark:border-[#2a2a28] rounded-4xl p-8 shadow-[0_24px_80px_rgba(0,0,0,0.08)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.45)] relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-0.75 bg-[linear-gradient(90deg,#d4a017,#e8c350,transparent)] rounded-t-4xl" />
 
@@ -272,7 +263,7 @@ const ResetPage = () => {
                       onChange={(e) => setConfirm(e.target.value)}
                       className={`w-full h-12 pl-10 pr-16 rounded-xl border bg-transparent text-sm outline-none focus:ring-2 ${confirmBorderClass}`}
                     />
-                    {/* Match icon */}
+
                     {(passwordsMatch || passwordsMismatch) && (
                       <span className="absolute right-10 pointer-events-none flex items-center">
                         {passwordsMatch ? (
@@ -344,7 +335,6 @@ const ResetPage = () => {
                   )}
                 </div>
 
-                {/* Submit */}
                 <button
                   type="submit"
                   disabled={btnLoading || passwordsMismatch}
@@ -377,7 +367,6 @@ const ResetPage = () => {
                 </button>
               </form>
 
-              {/* Divider + back to login */}
               <div className="flex items-center gap-3 mt-6 pt-6 border-t border-[#f0ece5] dark:border-[#2a2a28]">
                 <p className="text-sm text-center w-full text-[#888] dark:text-[#cfcfcf]">
                   Remember your password?{" "}
@@ -390,7 +379,6 @@ const ResetPage = () => {
               </div>
             </div>
 
-            {/* Footer */}
             <p className="text-center text-[11.5px] mt-5 text-[#bbb] dark:text-[#eee]">
               Need help?{" "}
               <Link href="/contact">

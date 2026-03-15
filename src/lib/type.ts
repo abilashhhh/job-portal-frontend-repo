@@ -109,7 +109,7 @@ export interface Job {
   work_location: "On-site" | "Remote" | "Hybrid";
   company_id: number;
   company_logo: string;
-  company_name :string 
+  company_name: string;
   posted_by_recruiter_id: number;
   created_at: string;
   is_active: boolean;
@@ -141,4 +141,11 @@ export interface Application {
   job_title: string;
   job_salary: number;
   job_location: string;
+}
+
+export interface FeatureCard {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  accent: string;
 }

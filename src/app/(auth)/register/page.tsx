@@ -278,7 +278,7 @@ const RegisterPage = () => {
               <button
                 type="submit"
                 disabled={!role}
-                className="group w-full h-12 rounded-xl text-sm font-bold tracking-[0.03em] flex items-center justify-center gap-2 transition-all duration-200 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground bg-foreground text-background hover:bg-[#d4a017] hover:text-background hover:-translate-y-px"
+                className="group w-full h-12 rounded-xl text-sm font-semibold tracking-[0.03em] flex items-center justify-center gap-2 transition-all duration-200 border border-border bg-[#efeae2] dark:bg-[#141412] text-muted-foreground hover:bg-[#e7e1d7] dark:hover:bg-[#1a1a18] hover:text-foreground disabled:cursor-not-allowed disabled:bg-[#f2eee7] dark:disabled:bg-[#111110] disabled:text-muted-foreground/50 disabled:border-border"
               >
                 Continue
                 <svg
@@ -480,7 +480,7 @@ const RegisterPage = () => {
                 <button
                   type="submit"
                   disabled={btnLoading}
-                  className="group flex-1 h-12 bg-foreground text-background hover:bg-[#d4a017] hover:text-background rounded-xl text-sm font-bold tracking-[0.03em] flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-px disabled:opacity-70 disabled:cursor-not-allowed border-none cursor-pointer"
+                  className="group w-full h-12 rounded-xl text-sm font-semibold tracking-[0.03em] flex items-center justify-center gap-2 transition-all duration-200 border border-border bg-[#efeae2] dark:bg-[#141412] text-muted-foreground hover:bg-[#e7e1d7] dark:hover:bg-[#1a1a18] hover:text-foreground disabled:cursor-not-allowed disabled:bg-[#f2eee7] dark:disabled:bg-[#111110] disabled:text-muted-foreground/50 disabled:border-border"
                 >
                   {role === "jobseeker" ? (
                     <>
@@ -739,3 +739,4 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
