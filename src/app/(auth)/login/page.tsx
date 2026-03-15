@@ -14,7 +14,7 @@ const LoginPage = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const dark = mounted && resolvedTheme === "dark";
-
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -211,7 +211,7 @@ const LoginPage = () => {
                   fontSize: 26,
                   fontWeight: 400,
                   letterSpacing: "-0.02em",
-                  background: dark
+                  backgroundImage: dark
                     ? "linear-gradient(135deg, #f0ede8 30%, #d4a017 100%)"
                     : "linear-gradient(135deg, #1a1a1a 30%, #d4a017 100%)",
                   WebkitBackgroundClip: "text",
@@ -227,7 +227,7 @@ const LoginPage = () => {
                   fontSize: 26,
                   fontWeight: 400,
                   letterSpacing: "-0.02em",
-                  background: "linear-gradient(135deg, #ef4444, #dc2626)",
+                  backgroundImage: "linear-gradient(135deg, #ef4444, #dc2626)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
